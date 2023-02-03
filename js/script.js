@@ -46,11 +46,12 @@ const displayRepos = function (repos) {
     const repoItem = document.createElement("div");
 
     //add css class name to single repo ("div")
-    //to  style and enable search
     repoItem.classList.add("repo");
     repoItem.innerHTML = `<h3>${repo.name}</h3>`;
     repoList.append(repoItem);
   }
+
+  getRepoInfo(repo)
 };
 
 repoList.addEventListener("click", function (e) {
@@ -65,7 +66,6 @@ const getRepoInfo = async function (repoName) {
     `https://api.github.com/repos/${username}/${repoName}`
   );
   const repoInfo = await fetchInfo.json();
-  console.log(repoInfo);
   
   // Grab languages
   const fetchLanguages = await fetch(repoInfo.languages_url);
