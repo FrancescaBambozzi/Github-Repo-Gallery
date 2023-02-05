@@ -80,9 +80,8 @@ const getRepoInfo = async function (repoName) {
 };
 
 const displayRepoInfo = function (repoInfo, languages) {
-  
   repoModal.style.display = "block";
-  
+
   window.onclick = function (event) {
     if (event.target == repoModal) {
       repoModal.style.display = "none";
@@ -92,10 +91,10 @@ const displayRepoInfo = function (repoInfo, languages) {
   repoModal.innerHTML = "";
   const div = document.createElement("div");
   div.classList.add("modal-content");
-  
+
   div.innerHTML = `
   <h3>Name: ${repoInfo.name}</h3>
-  <span>&times;</span>
+  <span class="close">&times;</span>
   <p><strong>Description:</strong> ${repoInfo.description}</p>
   <p><strong>Default Branch:</strong> ${repoInfo.default_branch}</p>
   <p><strong>Languages:</strong> ${languages.join(", ")}</p>
@@ -105,6 +104,12 @@ const displayRepoInfo = function (repoInfo, languages) {
   `;
 
   repoModal.append(div);
+
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function () {
+    repoModal.style.display = "none";
+  };
+  
 };
 
 //Search functionality
